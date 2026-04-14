@@ -1,0 +1,20 @@
+Nx_base=200  Ny_base=100  Steps=2000
+----------------------------------------------
+
+Size 1x  (Nx=200, Ny=100)
+  CPU  Nx=200  Ny=100  Steps=2000  Time=0.569349s
+  GPU  Nx=200  Ny=100  Steps=2000  Time=0.518197s
+
+Size 4x  (Nx=800, Ny=400)
+  CPU  Nx=800  Ny=400  Steps=2000  Time=3.1175s
+  GPU  Nx=800  Ny=400  Steps=2000  Time=0.584983s
+
+Size 8x  (Nx=1600, Ny=800)
+  CPU  Nx=1600  Ny=800  Steps=2000  Time=12.603s
+  GPU  Nx=1600  Ny=800  Steps=2000  Time=0.869274s
+
+Size 16x  (Nx=3200, Ny=1600)
+  CPU  Nx=3200  Ny=1600  Steps=2000  Time=53.029s
+  GPU  Nx=3200  Ny=1600  Steps=2000  Time=1.84946s
+
+This shows the classic GPU trade off where gpu offload with openmp gives massive wins the bigger the problem.

@@ -24,15 +24,21 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-CC       = nvc++
-CCFLAGS = -fast -mp
+CC = nvc++
 
-BIN =  laplace2d
+CFLAGS_GPU = -mp=gpu -gpu=cc80 -Ofast -Minfo=accel,mp
+CFLAGS_CPU = -mp -Ofast
 
-all: $(BIN)
+all: laplace2d cfd_euler_gpu cfd_euler_cpu
 
 laplace2d: laplace2d.cpp Makefile
-	$(CC) $(CCFLAGS) -o $@ laplace2d.cpp
+	$(CC) -fast -mp -o $@ laplace2d.cpp
+
+cfd_euler_gpu: cfd_euler.cpp Makefile
+	$(CC) $(CFLAGS_GPU) -o $@ cfd_euler.cpp
+
+cfd_euler_cpu: cfd_euler.cpp Makefile
+	$(CC) $(CFLAGS_CPU) -o $@ cfd_euler.cpp
 
 clean:
-	$(RM) $(BIN)
+	$(RM) laplace2d cfd_euler_gpu cfd_euler_cpu
